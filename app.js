@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
+import api from './api'
+
+server.use('/api', api)
 
 app.get("/", (req, res) => res.type('html').send(html));
 
