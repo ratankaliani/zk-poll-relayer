@@ -1,4 +1,4 @@
-# README
+# zkPoll Relayer
 
 This is an example of a Relayer for [zkPoll](https://zkpoll.xyz).
 
