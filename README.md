@@ -1,6 +1,6 @@
-# README
+# zkPoll Relayer
 
-This is an example of a Relayer for [zkPoll](https://zkpoll.xyz).
+This is an example of a Relayer for [zkPoll](https://github.com/daryakaviani/priv-poll).
 
 ## Deployment
 
