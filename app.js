@@ -4,6 +4,7 @@ const port = process.env.PORT || 3001;
 const ethers = require("ethers")
 const privPollABI = require("./abi/privpoll1.json")
 const path = require('path')
+const cors = require('cors')
 require('dotenv').config({ path: path.resolve(__dirname, '.env') })
 // const bodyParser = require('body-parser');
 
@@ -11,6 +12,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '.env') })
 
 // const server = express()
 // server.use('/api', api)
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => res.type('html').send(html));
