@@ -1,6 +1,6 @@
 # README
 
-This is an example of a Relayer for [zkPoll](zkpoll.xyz).
+This is an example of a Relayer for [zkPoll](https://zkpoll.xyz).
 
 ## Deployment
 
