@@ -101,7 +101,7 @@ app.post("/submitVote", async (req, res) => {
   // const tx = await contract.getPollState(pollId)
   const relayer = "0x426bF8b7C4f5CB67eb838CE2585116598cE3019A"
   console.log("Relayer", relayer);
-  let receipt
+  let receipt;
   try {
       const tx = await contract.castVote(strVote, nullifierHash, pollId.toString(), proof,
           {
@@ -109,7 +109,9 @@ app.post("/submitVote", async (req, res) => {
           gasLimit: '3000000'
           })
       receipt = await tx.wait();
-
+      let txHash = receipt.transactionHash;
+      // console.log("What's going on with the txHash?")
+      return res.status(200).json({ name: "Voted!", txHash: receipt.transactionHash, pollId: pollId, success: true })
 
   } catch(error) {
       if (error.code === ethers.utils.Logger.errors.CALL_EXCEPTION) {
@@ -131,11 +133,8 @@ app.post("/submitVote", async (req, res) => {
       } else {
           // This shouldn't really happen; maybe server error, like the internet connection failed?
       }
-      res.statusCode = 200
-      return res.json({ name: "Failed to vote!", txHash: error.txHash, pollId: pollId, success: false })
+      return res.status(200).json({ name: "Failed to vote!", txHash: error.transactionHash, pollId: pollId, success: false })
   }
-  res.statusCode = 200
-  return res.json({ name: "Voted!", txHash: receipt.txHash, pollId: pollId, success: true })
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
