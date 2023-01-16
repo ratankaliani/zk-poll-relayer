@@ -1,6 +1,6 @@
 # zkPoll Relayer
 
-This is an example of a Relayer for [zkPoll](https://github.com/daryakaviani/priv-poll).
+This is an example of a Relayer for [zkPoll](https://github.com/daryakaviani/priv-poll). It currently relays transactions for the [zkPoll frontend](https://zkpoll.xyz)
 
 ## Deployment
 
