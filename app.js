@@ -20,7 +20,7 @@ app.get("/", (req, res) => res.type('html').send(html));
 app.post("/submitVote", async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({
-      name: "POST endpoint", txHash: "", pollId: -1, success: false
+      name: "POST endpoint", txHash: "", pollId: -1, success: false, errorMsg: null
     })
   }
   body = req.body
@@ -37,28 +37,28 @@ app.post("/submitVote", async (req, res) => {
   // Required fields!
   if ("nullifierHash" in data == false) {
     return res.status(400).json({
-      name: "Must pass in nullifierHash", txHash: "", pollId: -1, success: false
+      name: "Must pass in nullifierHash", txHash: "", pollId: -1, success: false, errorMsg: null
     })
   } else {
     nullifierHash = data.nullifierHash
   }
   if ("proof" in data == false) {
     return res.status(400).json({
-      name: "Must pass in a proof", txHash: "", pollId: -1, success: false
+      name: "Must pass in a proof", txHash: "", pollId: -1, success: false, errorMsg: null
     })
   } else {
     vote = data.vote
   }
   if ("vote" in data == false) {
     return res.status(400).json({
-      name: "Must pass in a vote", txHash: "", pollId: -1, success: false
+      name: "Must pass in a vote", txHash: "", pollId: -1, success: false, errorMsg: null
     })
   } else {
     proof = data.proof
   }
   if ("pollId" in data == false) {
     return res.status(400).json({
-      name: "Must pass in a poll id", txHash: "", pollId: -1, success: false
+      name: "Must pass in a poll id", txHash: "", pollId: -1, success: false, errorMsg: null
     })
   } else {
     pollId = data.pollId
@@ -113,7 +113,7 @@ app.post("/submitVote", async (req, res) => {
       receipt = await tx.wait();
       let txHash = receipt.transactionHash;
       // console.log("What's going on with the txHash?")
-      return res.status(200).json({ name: "Voted!", txHash: receipt.transactionHash, pollId: pollId, success: true })
+      return res.status(200).json({ name: "Voted!", txHash: receipt.transactionHash, pollId: pollId, success: true, errorMsg: null })
 
   } catch(error) {
       if (error.code === ethers.utils.Logger.errors.CALL_EXCEPTION) {
@@ -135,7 +135,7 @@ app.post("/submitVote", async (req, res) => {
       } else {
           // This shouldn't really happen; maybe server error, like the internet connection failed?
       }
-      return res.status(200).json({ name: "Failed to vote!", txHash: error.transactionHash, pollId: pollId, success: false })
+      return res.status(200).json({ name: "Failed to vote!", txHash: error.transactionHash, pollId: pollId, success: false, errorMsg: error.code })
   }
 })
 
