@@ -4,7 +4,7 @@ This is an example of a Relayer for [zkPoll](https://github.com/daryakaviani/pri
 
 ## Deployment
 
-Follow the steps below on [Render](https://onrender.com)
+Follow the steps below on [Render](https://render.com)
 
 Create a new web service with the following values:
   * Build Command: `yarn`
