@@ -4,7 +4,7 @@ This is an example of a Relayer for [zkPoll](https://github.com/daryakaviani/pri
 
 ## Deployment
 
-See https://render.com/docs/deploy-node-express-app or follow the steps below:
+Follow the steps below on [Render](https://onrender.com)
 
 Create a new web service with the following values:
   * Build Command: `yarn`
