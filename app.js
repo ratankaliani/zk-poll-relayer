@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 const ethers = require("ethers")
-const privPollABI = require("./abi/privpoll1.json")
+const contractABI = require("./abi/contract.json")
 const path = require('path')
 const cors = require('cors')
 require('dotenv').config({ path: path.resolve(__dirname, '.env') })
@@ -83,7 +83,7 @@ app.post("/submitVote", async (req, res) => {
   const wallet = new ethers.Wallet(GOERLI_PRIVATE_KEY, provider);
   
   // console.log(wallet.address)
-  const contract = new ethers.Contract(PRIV_POLL_CONTRACT_ADDRESS, privPollABI, wallet);
+  const contract = new ethers.Contract(PRIV_POLL_CONTRACT_ADDRESS, contractABI, wallet);
 
 
   // TODO: REPLACE DUMMY CALL HERE WITH ACTUAL CALL TO VERIFIER CONTRACT
